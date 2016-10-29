@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using windowsappProject.Views;
 
-namespace windowsappProject.ViewModels.ViewModels
+namespace windowsappProject.ViewModels
 {
     /// <summary>
     /// This class contains static references to all the view models in the
