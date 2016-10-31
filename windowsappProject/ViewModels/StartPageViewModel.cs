@@ -1,9 +1,8 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Views;
-using Microsoft.Practices.ServiceLocation;
-using System;
+using Neo4j.Driver.V1;
+using System.Diagnostics;
 
 namespace windowsappProject.ViewModels
 {
@@ -61,13 +60,28 @@ namespace windowsappProject.ViewModels
             }
         }
 
-        public RelayCommand SetTextCommand { get; private set; }
+        public RelayCommand SetLoginCommand { get; private set; }
 
-        private void HandleSetText()
+        private void Login()
         {
             Title = "logging in ";
+
             _navigationService.NavigateTo("LoginPage");
 
+        }
+        public  void posttoneo4j()
+        {
+            using (var driver = GraphDatabase.Driver("bolt://localhost", AuthTokens.Basic("neo4j", "manus")))
+            using (var session = driver.Session())
+            {
+                session.Run("CREATE (a:Person {name:'Arthur', title:'King'})");
+                var result = session.Run("MATCH (a:Person) WHERE a.name = 'Arthur' RETURN a.name AS name, a.title AS title");
+
+                foreach (var record in result)
+                {
+                    Debug.WriteLine($"{record["title"].As<string>()} {record["name"].As<string>()}");
+                }
+            }
         }
 
         public StartPageViewModel(INavigationService navigationService)
@@ -75,7 +89,8 @@ namespace windowsappProject.ViewModels
             _navigationService = navigationService;
             Title = "Hello Manus";
             SubTitle = "hello i am a subtitle";
-            SetTextCommand = new RelayCommand(HandleSetText);
+            posttoneo4j();
+            SetLoginCommand = new RelayCommand(Login);
         }
     }
 }

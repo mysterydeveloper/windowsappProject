@@ -12,7 +12,7 @@
         <StackPanel>
             <TextBlock Name="Title"  HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Title}" FontFamily="Segoe UI Historic"  />
             <TextBlock Name="SubTitle"  HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding SubTitle}" FontFamily="Segoe UI Historic" />
-            <Button Margin="-3,5" x:Name="loginButton" Content="Log In" Command="{Binding SetTextCommand}" />
+            <Button Margin="-3,5" x:Name="loginButton" Content="Log In" Command="{Binding SetLoginCommand}" />
         </StackPanel>
     </Grid>
 </Page>
