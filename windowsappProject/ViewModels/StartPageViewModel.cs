@@ -1,14 +1,14 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
-using Neo4j.Driver.V1;
-using System.Diagnostics;
+using windowsappProject.Models;
 
 namespace windowsappProject.ViewModels
 {
     public class StartPageViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
+        databaseCalls dbc= new databaseCalls();
 
         private bool _isLoading = false;
         public bool IsLoading
@@ -69,28 +69,14 @@ namespace windowsappProject.ViewModels
             _navigationService.NavigateTo("LoginPage");
 
         }
-        public  void posttoneo4j()
-        {
-            using (var driver = GraphDatabase.Driver("bolt://localhost", AuthTokens.Basic("neo4j", "manus")))
-            using (var session = driver.Session())
-            {
-                session.Run("CREATE (a:Person {name:'Arthur', title:'King'})");
-                var result = session.Run("MATCH (a:Person) WHERE a.name = 'Arthur' RETURN a.name AS name, a.title AS title");
-
-                foreach (var record in result)
-                {
-                    Debug.WriteLine($"{record["title"].As<string>()} {record["name"].As<string>()}");
-                }
-            }
-        }
 
         public StartPageViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
             Title = "Hello Manus";
             SubTitle = "hello i am a subtitle";
-            posttoneo4j();
             SetLoginCommand = new RelayCommand(Login);
+            dbc.posttoneo4j("signup");
         }
     }
 }
