@@ -11,42 +11,34 @@ namespace windowsappProject.Models
     class databaseCalls
     {
         Signup s = new Signup();
+        login l = new login();
 
         public databaseCalls()
-        {
-            
-        }
+        {}
 
-        public void posttoneo4j(string posting)
+        public void posttoneo4j(string posting, Dictionary<string, string> parameters)
         {
             using (var driver = GraphDatabase.Driver("bolt://localhost", AuthTokens.Basic("neo4j", "manus")))
             using (var session = driver.Session())
             {
-                if(posting =="test") {
-                    testposting(session);
-                }
-                else if (posting == "signup")
+                if (posting == "signup")
                 {
-                    s.signup(session);
+                    s.signup(session, parameters);
+                }
+                else if (posting == "Login")
+                {
+                    var result = l.Login(session, parameters);
+                    foreach (var record in result)
+                    {
+                        Debug.WriteLine($"{record["title"].As<string>()} {record["name"].As<string>()}");
+                    }
+                    
                 }
 
             }
 
         }
-        public void testposting(ISession session)
-        {
-           
-            string name = "manus";
-            string title = "mr";
-            session.Run("CREATE (a:Person {name:{name}, title:{title}})",new Dictionary<string, object> { { "name", name  }, {"title",
-                title } });
-            var result = session.Run("MATCH (a:Person) WHERE a.name = 'Arthur' RETURN a.name AS name, a.title AS title");
-
-            foreach (var record in result)
-            {
-                Debug.WriteLine($"{record["title"].As<string>()} {record["name"].As<string>()}");
-            }
-        }
+       
 
         
     }

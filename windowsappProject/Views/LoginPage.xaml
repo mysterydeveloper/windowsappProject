@@ -27,15 +27,15 @@
             <Button Content="Sign up" Width="101" Height="60" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="20"
                     x:Name="helpLogin" Margin="0,5,10,0"/>
             <StackPanel VerticalAlignment="Center">
-                <TextBlock Width="280" FontSize="20" Foreground="White" VerticalAlignment="Center" Text="{Binding Title}"></TextBlock>
-                <TextBox Width="280" BorderThickness="2"  x:Name="username" VerticalAlignment="Center" />
+                <TextBlock Width="280" FontSize="20" Foreground="White" VerticalAlignment="Center"></TextBlock>
+                <TextBox Width="280" BorderThickness="2"  x:Name="username" VerticalAlignment="Center" Text="{Binding Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-                <TextBlock Width="280" FontSize="20" Foreground="White" VerticalAlignment="Center" Text="{Binding SubTitle}">Password</TextBlock>
-                <PasswordBox Width="280" BorderThickness="2"  x:Name="password" VerticalAlignment="Center" />
+                <TextBlock Width="280" FontSize="20" Foreground="White" VerticalAlignment="Center">Password</TextBlock>
+                <PasswordBox Width="280" BorderThickness="2"  x:Name="password" VerticalAlignment="Center" PasswordChar="*" Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                 <Grid Width="280">
                     <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                        <Button Margin="-3,5" x:Name="loginButton" Content="Log In" />
+                        <Button Margin="-3,5" x:Name="loginButton" Content="Log In" Command="{Binding SetLoginCommand}"/>
                     </StackPanel>
                 </Grid>
             </StackPanel>

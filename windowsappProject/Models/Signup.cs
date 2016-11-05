@@ -9,8 +9,9 @@ namespace windowsappProject.Models
 {
     class Signup
     {
-        public Boolean signup(ISession session)
+        public Boolean signup(ISession session, Dictionary<string,string> parameters)
         {
+
             string username = "manus";
             var result = session.Run("MATCH (a:User) WHERE a.username = {username} RETURN a.username"
                 , new Dictionary<string, object> { { "username", username } });

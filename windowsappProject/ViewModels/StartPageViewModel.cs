@@ -76,7 +76,6 @@ namespace windowsappProject.ViewModels
             Title = "Hello Manus";
             SubTitle = "hello i am a subtitle";
             SetLoginCommand = new RelayCommand(Login);
-            dbc.posttoneo4j("signup");
         }
     }
 }
