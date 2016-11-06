@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage;
 
 namespace windowsappProject.Models
 {
@@ -16,25 +17,31 @@ namespace windowsappProject.Models
         public databaseCalls()
         {}
 
-        public void posttoneo4j(string posting, Dictionary<string, string> parameters)
+        public bool posttoneo4j(string posting, Dictionary<string, string> parameters)
         {
             using (var driver = GraphDatabase.Driver("bolt://localhost", AuthTokens.Basic("neo4j", "manus")))
             using (var session = driver.Session())
             {
                 if (posting == "signup")
                 {
-                    s.signup(session, parameters);
+                    bool signup =s.signup(session, parameters);
+                    return signup;
                 }
                 else if (posting == "Login")
                 {
                     var result = l.Login(session, parameters);
                     foreach (var record in result)
                     {
-                        Debug.WriteLine($"{record["title"].As<string>()} {record["name"].As<string>()}");
-                    }
-                    
-                }
+                        ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+                        localSettings.Values["#username"] = record["username"].As<string>();
+                        localSettings.Values["#email"] = record["email"].As<string>();
 
+                        //Debug.WriteLine($"{record["title"].As<string>()} {record["name"].As<string>()}");
+                        return true;
+                    }
+                    return false;
+                }
+                return false;
             }
 
         }

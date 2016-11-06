@@ -42,8 +42,8 @@ namespace windowsappProject.ViewModels
                 if (value != _username)
                 {
                     _username = value;
-                    Debug.WriteLine(_username);
-                    RaisePropertyChanged("Title");
+                    //Debug.WriteLine(_username);
+                    RaisePropertyChanged("Username");
                 }
             }
         }
@@ -60,65 +60,63 @@ namespace windowsappProject.ViewModels
                 if (value != _password)
                 {
                     _password = value;
-                    Debug.WriteLine(_password);
-                    RaisePropertyChanged("Title");
+                    //Debug.WriteLine(_password);
+                    RaisePropertyChanged("Password");
                 }
             }
         }
 
-        private string _title;
-        public string Title
+        private string _error;
+        public string Error
         {
 
             get
             {
-                return _title;
+                return _error;
             }
             set
             {
-                if (value != _title)
+                if (value != _error)
                 {
-                    _title = value;
-                    RaisePropertyChanged("TestMessage");
+                    _error = value;
+                    RaisePropertyChanged("Error");
                 }
             }
         }
-        private string _subtitle;
-        public string SubTitle
-        {
 
-            get
-            {
-                return _subtitle;
-            }
-            set
-            {
-                if (value != _subtitle)
-                {
-                    _subtitle = value;
-                    RaisePropertyChanged("SubTitle");
-                }
-            }
-        }
 
         public RelayCommand SetLoginCommand { get; private set; }
+
+        public RelayCommand SetSignupCommand { get; private set; }
+
+        private void Signuppage()
+        {
+            _navigationService.NavigateTo("SignupPage");
+        }
 
         private void Login()
         {
             loginfinish.Clear();
-            Title = "logging in ";
+            Error = "logging in ";
             loginfinish.Add("username", _username);
             loginfinish.Add("password", _password);
-            _navigationService.NavigateTo("LoginPage");
-            dbc.posttoneo4j("Login", loginfinish);
+            bool loginb=dbc.posttoneo4j("Login", loginfinish);
+            if (loginb == true)
+            {
+                _navigationService.NavigateTo("StartPage");
+            }
+            else
+            {
+                Error = "username or password incorrect";
+            }
         }
 
         public LoginPageViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
-            Title = "Hello login";
-            SubTitle = "hello i am a login subtitle";
+            Error = " ";
             SetLoginCommand = new RelayCommand(Login);
+            SetSignupCommand = new RelayCommand(Signuppage);
         }
     }
 }

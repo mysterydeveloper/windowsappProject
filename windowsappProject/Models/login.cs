@@ -15,10 +15,8 @@ namespace windowsappProject.Models
 
             string username = parameters["username"];
             string password = parameters["password"];
-            var result = session.Run("MATCH (a:User) WHERE a.username = {username} AND a.password={password} RETURN a.username AS name, a.email AS title"
+            var result = session.Run("MATCH (a:User) WHERE a.username = {username} AND a.password={password} RETURN a.username AS username, a.email AS email"
                 , new Dictionary<string, object> { { "username", username }, { "password", password } });
-            
-           
             return result;
         }
     }

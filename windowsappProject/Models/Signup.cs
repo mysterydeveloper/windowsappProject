@@ -12,7 +12,7 @@ namespace windowsappProject.Models
         public Boolean signup(ISession session, Dictionary<string,string> parameters)
         {
 
-            string username = "manus";
+            string username = parameters["username"];
             var result = session.Run("MATCH (a:User) WHERE a.username = {username} RETURN a.username"
                 , new Dictionary<string, object> { { "username", username } });
             int counting = result.Count();
@@ -22,8 +22,8 @@ namespace windowsappProject.Models
             }
             else
             {
-                string email = "manus@yahoo.com";
-                string password = "duggan";
+                string email = parameters["email"];
+                string password = parameters["password"];
                 session.Run("CREATE (a:User {email:{email}, username:{username}, password:{password}})", new Dictionary<string, object> { { "email", email  },
                 { "username",username }, { "password",password } });
                 return true;
