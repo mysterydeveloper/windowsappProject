@@ -24,8 +24,8 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" Height="300" >
-            <Button Content="Sign up" Width="101" Height="60" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="20"
-                    x:Name="helpLogin" Margin="0,5,10,0" Command="{Binding SetSignupCommand}" />
+            <Button Content="Sign up" Height="60" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" FontSize="20"
+                    x:Name="Signup" Margin="123,0,112,-115" Command="{Binding SetSignupCommand}" d:LayoutOverrides="LeftPosition, RightPosition" />
             <StackPanel VerticalAlignment="Center">
                 <TextBlock Width="280" FontSize="20" Foreground="black" VerticalAlignment="Center">Username</TextBlock>
                 <TextBox Width="280" BorderThickness="2"  x:Name="username" VerticalAlignment="Center" Text="{Binding Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
@@ -41,6 +41,7 @@
                 </Grid>
             </StackPanel>
         </Grid>
+        <TextBlock x:Name="signuphelp" Height="48" Margin="12,0,12,85" Grid.Row="1" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Bottom"/>
     </Grid>
 </Page>
 

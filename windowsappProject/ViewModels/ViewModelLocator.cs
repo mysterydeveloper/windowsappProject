@@ -25,6 +25,7 @@ namespace windowsappProject.ViewModels
         public const string StartPageKey = "StartPage";
         public const string LoginPageKey = "LoginPage";
         public const string SignupPageKey = "SignupPage";
+        public const string ProfilePageKey = "ProfilePage";
         public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
@@ -32,6 +33,7 @@ namespace windowsappProject.ViewModels
             nav.Configure(StartPageKey, typeof(StartPage));
             nav.Configure(LoginPageKey, typeof(LoginPage));
             nav.Configure(SignupPageKey, typeof(SignUpPage));
+            nav.Configure(ProfilePageKey, typeof(ProfilePage));
             if (ViewModelBase.IsInDesignModeStatic)
             {
                 // Create design time view services and models
@@ -46,7 +48,7 @@ namespace windowsappProject.ViewModels
             SimpleIoc.Default.Register<StartPageViewModel>();
             SimpleIoc.Default.Register<LoginPageViewModel>();
             SimpleIoc.Default.Register<SignUpPageViewModel>();
-
+            SimpleIoc.Default.Register<ProfilePageViewModel>();
         }
 
 
@@ -76,6 +78,13 @@ namespace windowsappProject.ViewModels
             get
             {
                 return ServiceLocator.Current.GetInstance<SignUpPageViewModel>();
+            }
+        }
+        public ProfilePageViewModel ProfilePageInstance
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<ProfilePageViewModel>();
             }
         }
 
