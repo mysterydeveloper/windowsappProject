@@ -95,18 +95,37 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\databaseCalls.cs" />
-    <Compile Include="Models\LatestBets.cs" />
-    <Compile Include="Models\login.cs" />
-    <Compile Include="Models\MakeBet.cs" />
-    <Compile Include="Models\Signup.cs" />
+    <Compile Include="Data\Bets.cs" />
+    <Compile Include="Data\databaseCalls.cs" />
+    <Compile Include="Data\LatestBets.cs" />
+    <Compile Include="Data\login.cs" />
+    <Compile Include="Data\MakeBet.cs" />
+    <Compile Include="Data\PreviousBets.cs" />
+    <Compile Include="Data\Signup.cs" />
+    <Compile Include="Model\PreviousBetsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\LatestBetsPageViewModel.cs" />
     <Compile Include="ViewModels\LoginPageViewModel.cs" />
+    <Compile Include="ViewModels\ActiveBetsPageViewModel.cs" />
+    <Compile Include="ViewModels\PreviousBetsViewModel.cs" />
     <Compile Include="ViewModels\PageNav.cs" />
+    <Compile Include="ViewModels\MakePendingPageViewModel.cs" />
     <Compile Include="ViewModels\ProfilePageViewModel.cs" />
     <Compile Include="ViewModels\SignUpPageViewModel.cs" />
     <Compile Include="ViewModels\StartPageViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
+    <Compile Include="Views\ActiveBetsPage.xaml.cs">
+      <DependentUpon>ActiveBetsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LatestBetsPage.xaml.cs">
+      <DependentUpon>LatestBetsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PreviousBetsPage.xaml.cs">
+      <DependentUpon>PreviousBetsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MakePendingPage.xaml.cs">
+      <DependentUpon>MakePendingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
     </Compile>
@@ -141,6 +160,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Views\ActiveBetsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\LatestBetsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PreviousBetsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MakePendingPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\ProfilePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

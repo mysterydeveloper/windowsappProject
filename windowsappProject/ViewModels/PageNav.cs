@@ -12,26 +12,25 @@ namespace windowsappProject.ViewModels
         private readonly INavigationService _navigationService;
         public void ProfileNav()
         {
-            _navigationService.NavigateTo("StartPage");
+            _navigationService.NavigateTo("ProfilePage");
 
         }
         public void LatestNav()
         {
-            _navigationService.NavigateTo("StartPage");
+            _navigationService.NavigateTo("LatestBetsPage");
         }
-
         public void MakeBetNav()
         {
-            _navigationService.NavigateTo("StartPage");
+            _navigationService.NavigateTo("MakePendingPage");
         }
         public void PreviousNav()
         {
-            _navigationService.NavigateTo("StartPage");
+            _navigationService.NavigateTo("PreviousBetsPage");
 
         }
         public void ActiveNav()
         {
-            _navigationService.NavigateTo("StartPage");
+            _navigationService.NavigateTo("ActiveBetsPage");
         }
 
         public PageNav(INavigationService navigationService)

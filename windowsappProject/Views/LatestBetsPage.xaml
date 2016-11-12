@@ -1,0 +1,33 @@
+﻿<Page
+    x:Class="windowsappProject.Views.LatestBetsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:windowsappProject.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding LatestBetsPageInstance, Source={StaticResource Locator}}" 
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <Button  Grid.Column="0" x:Name="MyactiveBets" Command="{Binding ActiveNavCommand}" Content="My active bets" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="58" d:LayoutOverrides="TopPosition, BottomPosition" />
+            <Button  Grid.Column="1" x:Name="LatestBets" Command="{Binding LatestNavCommand}" Content="Latest Bets" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Height="58"  />
+            <Button  Grid.Column="2" x:Name="Previousbets" Command="{Binding PreviousNavCommand}" Content="My previous bets" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="58" />
+            <Button  Grid.Column="3" x:Name="makeorpending" Command="{Binding MakeNavCommand}" Content="Make a bet/pending bets" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Height="58" />
+            <Button  Grid.Column="4" x:Name="Profile" Command="{Binding ProfileNavCommand}" Content="Profile" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="58"  />
+        </Grid>
+    </Grid>
+</Page>
+

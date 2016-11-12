@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
-using windowsappProject.Models;
+using windowsappProject.Data;
 using GalaSoft.MvvmLight;
 using Windows.Storage;
 using System;

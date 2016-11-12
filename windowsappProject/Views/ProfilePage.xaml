@@ -14,7 +14,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid>
+        <Grid Grid.RowSpan="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="2*" />
@@ -22,12 +22,51 @@
                 <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
+
             <Button  Grid.Column="0" x:Name="MyactiveBets" Command="{Binding ActiveNavCommand}" Content="My active bets" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="58" d:LayoutOverrides="TopPosition, BottomPosition" />
             <Button  Grid.Column="1" x:Name="LatestBets" Command="{Binding LatestNavCommand}" Content="Latest Bets" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Height="58"  />
             <Button  Grid.Column="2" x:Name="Previousbets" Command="{Binding PreviousNavCommand}" Content="My previous bets" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="58" />
             <Button  Grid.Column="3" x:Name="makeorpending" Command="{Binding MakeNavCommand}" Content="Make a bet/pending bets" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Height="58" />
             <Button  Grid.Column="4" x:Name="Profile" Command="{Binding ProfileNavCommand}" Content="Profile" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="58"  />
         </Grid>
+
+        <Grid Grid.RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="2*" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="2" Grid.Column="2"  Width="280" FontSize="20" Foreground="black" VerticalAlignment="Center">Email</TextBlock>
+            <TextBlock Grid.Row="2" Grid.Column="4" Width="280" FontSize="20" Foreground="black" VerticalAlignment="Center" Text="{Binding Email}" />
+            <TextBlock Grid.Row="3" Grid.Column="2"  Width="280" FontSize="20" Foreground="black" VerticalAlignment="Center">Username</TextBlock>
+            <TextBlock Grid.Row="3" Grid.Column="4" Width="280" FontSize="20" Foreground="black" VerticalAlignment="Center" Text="{Binding Username}"/>
+            <TextBlock Grid.Row="5" Grid.Column="2"  Width="280" FontSize="20" Foreground="black" VerticalAlignment="Center">Bets Won</TextBlock>
+            <TextBlock Grid.Row="5" Grid.Column="4" Width="280" FontSize="20" Foreground="black" VerticalAlignment="Center" Text="{Binding Betswon}" />
+            <TextBlock Grid.Row="6" Grid.Column="2"  Width="280" FontSize="20" Foreground="black" VerticalAlignment="Center">Bets Lost</TextBlock>
+            <TextBlock Grid.Row="6" Grid.Column="4" Width="280" FontSize="20" Foreground="black" VerticalAlignment="Center" Text="{Binding Betslost}" />
+            <TextBlock Grid.Row="8" Grid.Column="2"  Width="280" FontSize="20" Foreground="black" VerticalAlignment="Center">Active Bets</TextBlock>
+            <TextBlock Grid.Row="8" Grid.Column="4" Width="280" FontSize="20" Foreground="black" VerticalAlignment="Center" Text="{Binding ActiveBets}" />
+            <TextBlock Grid.Row="9" Grid.Column="2"  Width="280" FontSize="20" Foreground="black" VerticalAlignment="Center">Outstanding bets</TextBlock>
+            <TextBlock Grid.Row="9" Grid.Column="4" Width="280" FontSize="20" Foreground="black" VerticalAlignment="Center" Text="{Binding Outstandingbets}" />
+
+            <Button Grid.Row="9" Grid.Column="0" Margin="-3,0,0,0" x:Name="LogoutButton" Content="Logout" Command="{Binding SetLoginCommand}" Width="259" Height="72"/>
+        </Grid>
+
     </Grid>
 </Page>
 

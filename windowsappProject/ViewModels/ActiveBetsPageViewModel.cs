@@ -10,10 +10,9 @@ using windowsappProject.Data;
 
 namespace windowsappProject.ViewModels
 {
-    public class ProfilePageViewModel  : ViewModelBase
+    public class ActiveBetsPageViewModel  : ViewModelBase
     {
         private readonly INavigationService _navigationService;
-        
         databaseCalls dbc = new databaseCalls();
         PageNav pn ;
         private bool _isLoading = false;
@@ -49,24 +48,6 @@ namespace windowsappProject.ViewModels
             }
         }
 
-        private string _email;
-        public string Email
-        {
-
-            get
-            {
-                return _error;
-            }
-            set
-            {
-                if (value != _error)
-                {
-                    _error = value;
-                    RaisePropertyChanged("Email");
-                }
-            }
-        }
-
 
         public RelayCommand ActiveNavCommand { get; private set; }
         public RelayCommand LatestNavCommand { get; private set; }
@@ -74,7 +55,7 @@ namespace windowsappProject.ViewModels
         public RelayCommand MakeNavCommand { get; private set; }
         public RelayCommand ProfileNavCommand { get; private set; }
 
-        public ProfilePageViewModel(INavigationService navigationService)
+        public ActiveBetsPageViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
             pn = new PageNav(_navigationService);
@@ -83,7 +64,6 @@ namespace windowsappProject.ViewModels
             PreviousNavCommand = new RelayCommand(pn.PreviousNav);
             MakeNavCommand = new RelayCommand(pn.MakeBetNav);
             ProfileNavCommand = new RelayCommand(pn.ProfileNav);
-            
         }
 
     }

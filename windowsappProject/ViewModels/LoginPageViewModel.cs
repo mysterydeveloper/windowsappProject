@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using windowsappProject.Models;
+using windowsappProject.Data;
 
 namespace windowsappProject.ViewModels
 {

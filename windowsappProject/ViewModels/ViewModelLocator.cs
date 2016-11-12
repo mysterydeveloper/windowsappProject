@@ -26,6 +26,10 @@ namespace windowsappProject.ViewModels
         public const string LoginPageKey = "LoginPage";
         public const string SignupPageKey = "SignupPage";
         public const string ProfilePageKey = "ProfilePage";
+        public const string ActiveBetsPageKey = "ActiveBetsPage";
+        public const string LatestBetsPageKey = "LatestBetsPage";
+        public const string PreviousBetsPageKey = "PreviousBetsPage";
+        public const string MakePendingPageKey = "MakePendingPage";
         public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
@@ -34,6 +38,10 @@ namespace windowsappProject.ViewModels
             nav.Configure(LoginPageKey, typeof(LoginPage));
             nav.Configure(SignupPageKey, typeof(SignUpPage));
             nav.Configure(ProfilePageKey, typeof(ProfilePage));
+            nav.Configure(ActiveBetsPageKey, typeof(ActiveBetsPage));
+            nav.Configure(LatestBetsPageKey, typeof(LatestBetsPage));
+            nav.Configure(PreviousBetsPageKey, typeof(PreviousBetsPage));
+            nav.Configure(MakePendingPageKey, typeof(MakePendingPage));
             if (ViewModelBase.IsInDesignModeStatic)
             {
                 // Create design time view services and models
@@ -49,6 +57,10 @@ namespace windowsappProject.ViewModels
             SimpleIoc.Default.Register<LoginPageViewModel>();
             SimpleIoc.Default.Register<SignUpPageViewModel>();
             SimpleIoc.Default.Register<ProfilePageViewModel>();
+            SimpleIoc.Default.Register<ActiveBetsPageViewModel>();
+            SimpleIoc.Default.Register<LatestBetsPageViewModel>();
+            SimpleIoc.Default.Register<PreviousBetsViewModel>();
+            SimpleIoc.Default.Register<MakePendingPageViewModel>();
         }
 
 
@@ -85,6 +97,36 @@ namespace windowsappProject.ViewModels
             get
             {
                 return ServiceLocator.Current.GetInstance<ProfilePageViewModel>();
+            }
+        }
+        public ActiveBetsPageViewModel ActivePageInstance
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<ActiveBetsPageViewModel>();
+            }
+        }
+        public LatestBetsPageViewModel LatestBetsPageInstance
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<LatestBetsPageViewModel>();
+            }
+        }
+
+        public PreviousBetsViewModel PreviousBetsPageInstance
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<PreviousBetsViewModel>();
+            }
+        }
+
+        public MakePendingPageViewModel MakePendingPageInstance
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<MakePendingPageViewModel>();
             }
         }
 

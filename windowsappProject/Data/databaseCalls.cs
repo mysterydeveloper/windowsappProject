@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 
-namespace windowsappProject.Models
+namespace windowsappProject.Data
 {
     class databaseCalls
     {
@@ -45,8 +45,8 @@ namespace windowsappProject.Models
             }
 
         }
-       
 
-        
-    }
+
+
+        }
 }
