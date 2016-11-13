@@ -55,13 +55,13 @@ namespace windowsappProject.ViewModels
 
             get
             {
-                return _error;
+                return _email;
             }
             set
             {
-                if (value != _error)
+                if (value != _email)
                 {
-                    _error = value;
+                    _email = value;
                     RaisePropertyChanged("Email");
                 }
             }
@@ -83,7 +83,6 @@ namespace windowsappProject.ViewModels
             PreviousNavCommand = new RelayCommand(pn.PreviousNav);
             MakeNavCommand = new RelayCommand(pn.MakeBetNav);
             ProfileNavCommand = new RelayCommand(pn.ProfileNav);
-            
         }
 
     }

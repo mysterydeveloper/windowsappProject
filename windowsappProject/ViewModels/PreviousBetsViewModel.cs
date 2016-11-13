@@ -16,8 +16,8 @@ namespace windowsappProject.ViewModels
     {
         private readonly INavigationService _navigationService;
         databaseCalls dbc = new databaseCalls();
+        PreviousBets pb = new PreviousBets();
         PageNav pn ;
-        PreviousBetsModel pbm = new PreviousBetsModel();
         private bool _isLoading = false;
         public bool IsLoading
         {
@@ -58,19 +58,23 @@ namespace windowsappProject.ViewModels
         public RelayCommand MakeNavCommand { get; private set; }
         public RelayCommand ProfileNavCommand { get; private set; }
 
-        ObservableCollection<BetsViewModel> _Bets
-             = new ObservableCollection<BetsViewModel>();
-        public ObservableCollection<BetsViewModel> Bets
+
+        private List<Bets> _previousBettingList;
+        public List<Bets> PreviousBetinglist
         {
-            get { return _Bets; }
+            get
+            {
+                return _previousBettingList;
+            }
             set
             {
-                if (value != _Bets)
+                if (value != _previousBettingList)
                 {
-                    _Bets = value;
-                    RaisePropertyChanged("Bets");
+                    _previousBettingList = value;
+                    RaisePropertyChanged("PreviousBetinglist");
                 }
             }
+
         }
         public PreviousBetsViewModel(INavigationService navigationService)
         {
@@ -82,7 +86,8 @@ namespace windowsappProject.ViewModels
             MakeNavCommand = new RelayCommand(pn.MakeBetNav);
             ProfileNavCommand = new RelayCommand(pn.ProfileNav);
 
-            
+
+            PreviousBetinglist = pb.Previous();
         }
 
     }

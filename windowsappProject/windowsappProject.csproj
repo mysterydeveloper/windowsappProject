@@ -95,14 +95,13 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Data\Bets.cs" />
+    <Compile Include="Model\Bets.cs" />
     <Compile Include="Data\databaseCalls.cs" />
     <Compile Include="Data\LatestBets.cs" />
     <Compile Include="Data\login.cs" />
     <Compile Include="Data\MakeBet.cs" />
     <Compile Include="Data\PreviousBets.cs" />
     <Compile Include="Data\Signup.cs" />
-    <Compile Include="Model\PreviousBetsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\LatestBetsPageViewModel.cs" />
     <Compile Include="ViewModels\LoginPageViewModel.cs" />

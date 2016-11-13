@@ -7,14 +7,18 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding PreviousBetsPageInstance, Source={StaticResource Locator}}" 
     mc:Ignorable="d">
+    
+    
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="1">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="2*" />
@@ -28,20 +32,43 @@
             <Button  Grid.Column="3" x:Name="makeorpending" Command="{Binding MakeNavCommand}" Content="Make a bet/pending bets" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Height="58" />
             <Button  Grid.Column="4" x:Name="Profile" Command="{Binding ProfileNavCommand}" Content="Profile" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="58"  />
         </Grid>
-        
-        <Grid Grid.Row="2">
-            <StackPanel Grid.Column="0" Orientation="Vertical">
-                <ListView  x:Name="MainList" 
-              ItemsSource="{Binding PreviousBetsModel.Betting, Mode=OneWay}" 
-              MinWidth="250" Margin="5">
-                    <ListView.ItemTemplate>
-                        <DataTemplate >
-                            <TextBlock Text="{Binding BetName, Mode=OneWay}" />
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                <Button Content="Add" Click="{x:Bind  Organization.Add}" Margin="5"/>
-            </StackPanel>
+        <Grid Grid.Row="1" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Bet" />
+            <TextBlock Grid.Column="1" Text="Gambler No.1" />
+            <TextBlock Grid.Column="2" Text="Gambler No.2" />
+        </Grid>
+
+        <Grid Grid.Row="2" >
+            <ListView ItemsSource="{Binding PreviousBetinglist}">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding BetName, Mode=OneWay}" />
+                            <TextBlock Grid.Column="1" Text="{Binding Person1, Mode=OneWay}" />
+                            <TextBlock Grid.Column="2" Text="{Binding Person2, Mode=OneWay}" />
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Button Grid.Row="9" Grid.Column="0" Margin="-3,0,0,0" x:Name="RefreshBTN" Content="Refresh" Command="{Binding SetLoginCommand}" Width="259" Height="72"/>
         </Grid>
     </Grid>
 </Page>
