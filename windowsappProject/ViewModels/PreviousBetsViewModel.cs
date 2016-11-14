@@ -57,6 +57,7 @@ namespace windowsappProject.ViewModels
         public RelayCommand PreviousNavCommand { get; private set; }
         public RelayCommand MakeNavCommand { get; private set; }
         public RelayCommand ProfileNavCommand { get; private set; }
+        public RelayCommand RefreshCommand { get; private set; }
 
 
         private List<Bets> _previousBettingList;
@@ -76,6 +77,11 @@ namespace windowsappProject.ViewModels
             }
 
         }
+
+        public void Refresh()
+        {
+            PreviousBetinglist = pb.Previous();
+        }
         public PreviousBetsViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
@@ -85,6 +91,8 @@ namespace windowsappProject.ViewModels
             PreviousNavCommand = new RelayCommand(pn.PreviousNav);
             MakeNavCommand = new RelayCommand(pn.MakeBetNav);
             ProfileNavCommand = new RelayCommand(pn.ProfileNav);
+
+            RefreshCommand = new RelayCommand(Refresh);
 
 
             PreviousBetinglist = pb.Previous();

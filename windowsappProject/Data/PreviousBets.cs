@@ -8,7 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 using windowsappProject.Model;
-using SQLitePCL;
+using SQLite.Net;
+using SQLite.Net.Platform.WinRT;
 
 namespace windowsappProject.Data
 {
@@ -16,42 +17,47 @@ namespace windowsappProject.Data
     {
         public List<Bets> Previous()
         {
-            List<Bets> temp=new List<Bets>();
+            List<Bets> temp=new List<Bets>();          
 
-            temp.Add(new Bets() { BetName = "hello", Person1 = "manus", Person2 = "callon" });
-            temp.Add(new Bets() { BetName = "hello", Person1 = "manus", Person2 = "callon" });
-            temp.Add(new Bets() { BetName = "hello", Person1 = "manus", Person2 = "callon" });
-            temp.Add(new Bets() { BetName = "hello", Person1 = "manus", Person2 = "callon" });
-            temp.Add(new Bets() { BetName = "hello", Person1 = "manus", Person2 = "callon" });
-            temp.Add(new Bets() { BetName = "hello", Person1 = "manus", Person2 = "callon" });
-            SQLiteConnection connection = new SQLiteConnection("Bets.db");
-           
-            string ssql = "CREATE TABLE IF NOT EXISTS Betting (IDBet Integer Primary Key AutoIncrement Not Null+Person1 Varchar(100)+Person1 Varchar(100)+Person2 Varchar(100)+Betname Varchar(100) )";
-
-            string Query = "select Betname,Person1,Person2 from Betting";
-
-            ISQLiteStatement istate = connection.Prepare(ssql);
-
-            istate.Step();
-
-            istate = connection.Prepare(Query);
-
-
-            istate.Step();
-
-            /*using (var reader = command.ExecuteReader())
+            using (var db = DbConnection)
             {
-                while (reader.Read())
-                {
-                    var Betnames = reader.GetString(0);
-                    var p1 = reader.GetString(1);
-                    var p2 = reader.GetString(2);
-                    Debug.WriteLine(Betnames+p1+p2);
-                    temp.Add(new Bets() { BetName = Betnames,Person1=p1,Person2=p2 });
-                }
-            }*/
+                // Activate Tracing 
+                db.TraceListener = new DebugTraceListener();
+                // Database stuff.
+                // ...
+                String Status="Done";
+                // Create the table if it does not exist 
+                var c = db.CreateTable<Bets>();
+                var info = db.GetMapping(typeof(Bets));
+                Bets BETS = new Bets();
+                BETS.Person1 = "MANUS";
+                BETS.Person2 = "AOIFE";
+                BETS.BetName = "FUNNY";
+                BETS.Date = new DateTime();
+                BETS.Status = "Done";
+                var i = db.InsertOrReplace(BETS);
+
+                temp= (from p in db.Table<Bets>() where p.Status==Status select p).ToList();
+            }
             return temp;
         }
 
+        private static SQLiteConnection DbConnection
+        {
+            get
+            {
+                return new SQLiteConnection(
+                    new SQLitePlatformWinRT(),
+                    Path.Combine(ApplicationData.Current.LocalFolder.Path, "Storage.sqlite"));
+            }
+        }
+
+    }
+    public class DebugTraceListener : ITraceListener
+    {
+        public void Receive(string message)
+        {
+            Debug.WriteLine(message);
+        }
     }
 }
